@@ -12,29 +12,48 @@
 */
 
 use EloquentORM\User;
+use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/create', function () {
+    $faker = Faker::create();
 
     $user = User::create([
-        'name'  => 'Lynda Galindez',
-        'email' => 'lynda@gmail.com',
+        'name'  => $faker->name,
+        'email' => $faker->email,
         'password'  => bcrypt('123456'),
-        'gender'    => 'f',
-        'biography' => 'Estudiante de Programacion'
+        'gender'    => $faker->randomElement(['f', 'm']),
+        'biography' => $faker->text(255)
     ]);
 
-    return 'Usuario Guardado';
+    return $user;
 });
 
 
-Route::get('/update-user', function () {
+Route::get('/read/{id}', function($id){
+    $user = User::find($id);
 
-    $user = User::find(1);
+    return $user;
+});
 
-    $user->gender = 'm';
-    $user->biography = 'Estudiante de Programacion';
+
+Route::get('/update/{id}', function ($id) {
+    $faker = Faker::create();
+    $user = User::find($id);
+
+    $user->name  = $faker->name;
+    $user->gender = $faker->randomElement(['f', 'm']);
+    $user->biography = $faker->text(255);
 
     $user->save();
 
-    return 'Usuario Actualizado';
+    return $user;
+});
+
+
+Route::get('/delete/{id}', function ($id){
+    $user = User::find($id);
+    $user->delete();
+
+    return 'Usuario Eliminado';
 });
