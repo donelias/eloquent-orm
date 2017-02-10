@@ -18,7 +18,17 @@ class QueryController extends Controller
     public function eloquentGet($gender){
 
         $users = User::where('gender', $gender)->get();
-        $title = 'Todos los Usuarios (All)';
+        $title = 'Todos los Usuarios (GET)';
+
+        return view('query.methods', compact('title', 'users'));
+    }
+
+
+    public function eloquentGetCustom(){
+
+        $users = User::where('gender', 'f')
+            ->get(['id', 'name', 'biography']);
+        $title = 'Todos los Usuarios (GET Custom - con array)';
 
         return view('query.methods', compact('title', 'users'));
     }
