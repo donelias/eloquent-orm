@@ -32,7 +32,19 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="{{ route('home') }}">Home</a></li>
+                        <li class=""><a href="{{ route('home') }}">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consultas Eloquent <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('all') }}">Todos los Usuarios (All)</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header">Nav header</li>
+                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                         <li class="dropdown">
@@ -51,14 +63,6 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
-
-        <div class="container theme-showcase" role="main">
-
-            <!-- Main jumbotron for a primary marketing message or call to action -->
-            <div class="jumbotron">
-                <h1>Curso de Eloquent ORM</h1>
-                <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
-            </div>
 
         @yield('content')
 
